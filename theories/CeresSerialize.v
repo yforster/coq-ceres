@@ -13,6 +13,8 @@ From Ceres Require Import
   CeresString.
 (* end hide *)
 
+From MetaCoq Require Import bytestring.
+
 (** Serialization to S-expressions. *)
 Class Serialize (A : Type) :=
   to_sexp : A -> sexp.
@@ -80,7 +82,7 @@ Instance Serialize_ascii : Serialize ascii
   := fun a => Atom (Str (String a "")).
 
 Global
-Instance Serialize_string : Serialize string
+Instance Serialize_string : Serialize String.string
   := fun s => Atom (Str s).
 
 Global
